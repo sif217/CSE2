@@ -2,7 +2,6 @@
 //Janaury 30th 2015
 //Lab 2
 //Cyclometer Program
-//This program 
 //
 // define a class
 public class Cyclometer {
