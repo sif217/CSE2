@@ -1,7 +1,8 @@
 // Siyi Feng
 // Homework 4
 // WhichNumber Program
-/* This program inputs 
+/* This program inputs several question by using if/else if/else 
+statement to and out put a 
 */
 //
 // import a scanner
@@ -102,7 +103,7 @@ public class WhichNumber{
                         } // end of if 8
                         // if the number is not 4
                         else if(number4.equals("N")||number4.equals("n")){
-                            System.out.println("If you are not lying, the number should be .");
+                            System.out.println("If you are not lying, the number should be 4.");
                         } // end of if 9
                         // else if 5 the input is not valid
                         else{
@@ -159,7 +160,7 @@ public class WhichNumber{
                         }
                         // if the number is not 2
                         else if(number2.equals("n")||number2.equals("N")){
-                            System.out.println("If you are not lying, the number should ve 2.");
+                            System.out.println("If you are not lying, the number should be 2.");
                         }
                         // else if the input is not valid 
                         else{
