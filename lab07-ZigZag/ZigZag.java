@@ -37,13 +37,14 @@ public class ZigZag{
         
         //question 4 
         Scanner myScanner=new Scanner(System.in);//construct a scanner
-        System.out.print("Enter an int between 3 and 33:");
+        
         
         
         int ture=0;
         while(ture==0){
+            System.out.print("Enter an int between 3 and 33:");
             if(myScanner.hasNextInt()){
-                System.out.print("Enter an int between 3 and 33:");
+                
                 int inputVariable=myScanner.nextInt();
                 
             if(inputVariable>=3 && inputVariable<=33){
@@ -53,24 +54,33 @@ public class ZigZag{
                  System.out.println("");
                  
                 for(i=0;i<inputVariable;i++){
-                    for(j=0;j<i;j++){
+                    if(i==0){
+                        System.out.print("");
+                    }
+                    
+                    else{
+                    for(j=0;j<i-1;j++){
                         System.out.print(" ");
                     }
                     System.out.print("*");
-                     System.out.println("");
+                    System.out.println("");
+                    }
                 }
+                //end of for
                  
                 for (i=0;i<inputVariable;i++){
                     System.out.print("*");
                     
                     if(i==(inputVariable-1)){
                         System.out.println("");
-                        System.out.print("Enter y or Y to go again:");
+                        System.out.println("Enter y or Y to go again:");
                         String again=myScanner.next();
                         if(again.equals("y") || again.equals("Y")){
                             ture=0;
+                            break;
                         }
                         else{
+                            ture=1;
                             break;
                         }
                     }
