@@ -53,9 +53,9 @@ public class ZigZag{
                 }
                  System.out.println("");
                  
-                for(i=0;i<inputVariable;i++){
+                for(i=0;i<inputVariable-1;i++){
                     if(i==0){
-                        System.out.print("");
+                        System.out.print(" ");
                     }
                     
                     else{
