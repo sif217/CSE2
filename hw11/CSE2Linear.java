@@ -1,7 +1,9 @@
 //Siyi Feng
-//Lab 07
-//ZigZag Program
-/*This program prints out star sign*/
+//Homework 11
+//Linear Program
+/*This program asked user to enter 15 integer numbers 
+and binear search another input and then shuffle the 
+array and then use linear search to search another input*/
 //
 //import a scanner
 import java.util.Scanner;
