@@ -18,6 +18,7 @@ public static void main(String[] args){
     int[] width=new int[2];
     int[] height=new int[2];
     
+    while(arg){
     for(int i=0;i<2;i++){
         System.out.println("Input an integer for the width of No. "+(i+1)+" matrix: ");
     if(myScanner.hasNextInt()){
@@ -45,7 +46,18 @@ public static void main(String[] args){
     height[i]=myScanner.nextInt();
         if(height[i]>0){
             height[i]=height[i];
-            if(i==1){break;}
+            
+            if(i==1){
+            if(width[0]!=height[1]){
+                System.out.println("The multiplication cannot be executed because the width of No.1 matrix does not equal to the height of No.2 matrix.");
+                break;
+            }
+    
+            else{
+                 arg=false;
+                 break;
+            }   
+            }
             
             
         }
@@ -62,9 +74,11 @@ public static void main(String[] args){
         i--;
         continue;
     }
-   
-    }//end of for loop
     
+    
+
+    }//end of for loop
+    }
 
     
     //invoke the randomMatrix method to generate a 2D metrix 
@@ -106,16 +120,19 @@ public static void main(String[] args){
     
     //print out the final array
     
-    while(arg1){
+    
     System.out.println("For the final calculated matrix, please enter true for row-major format, false for column-major format:");
     if(myScanner.hasNextBoolean()){
         boolean format=myScanner.nextBoolean();
         printMatrix(finalArray,format);
-        break;
+        System.out.println("END!");
+        
     }
-    else{System.out.println("Please enter either true or false!");}
-    myScanner.next();
-    }
+    else{System.out.println("Please enter either true or false!");
+    myScanner.next();}
+    
+    
+    
     
     
 }//end of the main method 
@@ -175,9 +192,7 @@ public static void printMatrix(int[][] array, boolean format){
 public static int[][] matrixMultiply(int[][] array1,int[][] array2){
     int[][] finalArray=new int[array1.length][array2[0].length];
     //print out error
-    if(array1[0].length!=array2.length){System.out.println("The multiplication cannot be executed because the width of No.1 matrix does not equal to the height of No.2 matrix.");
-    System.exit(0);
-    }
+    
     for(int h=0;h<array1.length;h++){
         for(int w=0;w<array2[0].length;w++){
             for(int l=0;l<array1[0].length;l++){
