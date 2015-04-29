@@ -137,7 +137,35 @@ Fills the 4D array with random doubles.
             
         }//end of for loop
         
+        //asumme the lowest value in each 3D array is the first element in the first innermost array for each 3D array
+        double[][][][] lowest=new double[1][1][1][3];
+        lowest[0][0][0][0]=sArray4D[0][0][0][0];
+        lowest[0][0][0][1]=sArray4D[1][0][0][0];
+        lowest[0][0][0][2]=sArray4D[2][0][0][0];
+        
+        //to find the actual lowest value in each 3D array, total 3
+        for(int a=0;a<3;a++){
+                for(int j=0;j<sArray4D[a].length;j++){
+                    for(int l=0;l<sArray4D[a][j].length;l++){
+                        
+                        if(sArray4D[a][j][l][0]<lowest[0][0][0][a]) {lowest[0][0][0][a]=sArray4D[a][j][l][0];}
+
+                    }
+                }
+            }//end of for loop
             
+        //to swap the 3D arrays who have the same length but the one with the lower value of the lowest value in its sub-array goes first     
+        double[][][] temp;
+        for(int z=0;z<3;z++){
+            temp=sArray4D[z];
+            for(int y=0;y<3;y++){
+                if(sArray4D[y].length==sArray4D[z].length && z>y && lowest[0][0][0][z]<lowest[0][0][0][y]){
+                    sArray4D[z]=sArray4D[y];
+                    sArray4D[y]=temp;
+                }
+            }
+        }//end of for
+                
             return sArray4D;
     }//end of sort4DArray method 
     
