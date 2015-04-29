@@ -75,11 +75,11 @@ public class FourDwin{
             System.out.println("Original Array:");
             printArray(array4D);
             
-            System.out.println("Sorted Array(sort3D array):");
+           
             double[][][][]sArray3D=sort3DArray(array4D);
             
-            printArray(sArray3D);
-            System.out.println("Sorted Array(sort4D array)");
+            
+            System.out.println("Sorted Array:");
             double[][][][]sArray4D=sort4DArray(sArray3D);
             printArray(sArray4D);
             statArray(array4D);
@@ -135,9 +135,9 @@ Fills the 4D array with random doubles.
             }
             sArray4D[k+1]=currentElement;
             
-            
         }//end of for loop
         
+            
             return sArray4D;
     }//end of sort4DArray method 
     
