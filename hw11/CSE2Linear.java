@@ -112,10 +112,11 @@ public class CSE2Linear{
         
         while (high >= low){
             int mid = (low +high)/2;
-            i++;
+            
             if(keyNumber<bsArray[mid]) high = mid-1;
-            else if(keyNumber == bsArray[mid]) return i;
+            else if(keyNumber == bsArray[mid]) { System.out.println("***"+i);return i;}
             else low = mid + 1;
+            i++;
         }
         return i;
     }//end of binary Search method 
