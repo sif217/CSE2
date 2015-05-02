@@ -76,20 +76,14 @@ public class FourDwin{
             printArray(array4D);
             
            
-            double[][][][]sArray3D=sort3DArray(array4D);
+            
             
             
             System.out.println("Sorted Array:");
-            double[][][][]sArray4D=sort4DArray(sArray3D);
+            double[][][][]sArray4D=sort4DArray(array4D);
             printArray(sArray4D);
             statArray(array4D);
-        /*
-        Write a main method that:
-	Loops to ask and check for valid user input (2 integers).
-Creates a 4D ragged array based on these values.
-Fills the 4D array with random doubles.
-	Prints out the initial array, the sorted array, and its statistics.
-        */
+       
     }//end of the main method 
     
     public static void statArray(double[][][][] array4D){
@@ -119,54 +113,81 @@ Fills the 4D array with random doubles.
             }//end of for loop
             
         System.out.println("Sum:   "+oneDigit.format(sum));
-        System.out.println("Mean:  "+threeDigit.format(sum/sumI));
+        
+        if(sumI==0){System.out.println("Doesn't have a mean.");}
+        
+        else {System.out.println("Mean:  "+threeDigit.format(sum/sumI));}
     }//end of statArray method 
+    
     
     //sort4DArray method 
     //this sort4DArray method uses insertion sorting to sort sub-3D array by the length of them from smallest to largest 
     //if there are arrays have the same length, the array with the lowest value of the lowest value in that array goes first
     public static double[][][][] sort4DArray(double sArray4D[][][][]){
+        int[] size=new int[3];
+        size[0]=0;size[1]=0;size[2]=0;
+        for(int i=0;i<3;i++){
+            for(int j=0;j<sArray4D[i].length;j++){
+                for(int l=0;l<sArray4D[i][j].length;l++){
+                    size[i]+=sArray4D[i][j][l].length;
+                }
+            }
+        }
+        
+        
         for(int i=1;i<3;i++){
                 
             double[][][] currentElement=sArray4D[i];
+            int currentIndex=i;
             int k;
-            for(k=i-1;k>=0 && sArray4D[k].length>currentElement.length;k--){
+            
+            for(k=i-1;k>=0 && size[k]>size[currentIndex];k--){
                 sArray4D[k+1]=sArray4D[k];
             }
             sArray4D[k+1]=currentElement;
+            currentIndex=k+1;
             
         }//end of for loop
         
-        //asumme the lowest value in each 3D array is the first element in the first innermost array for each 3D array
-        double[][][][] lowest=new double[1][1][1][3];
-        lowest[0][0][0][0]=sArray4D[0][0][0][0];
-        lowest[0][0][0][1]=sArray4D[1][0][0][0];
-        lowest[0][0][0][2]=sArray4D[2][0][0][0];
+        //find the lowest value in each 3D array
+        double lowest[]=new double[3];
+        lowest[0]=100000;lowest[1]=1000000;lowest[2]=1000000;
         
-        //to find the actual lowest value in each 3D array, total 3
-        for(int a=0;a<3;a++){
-                for(int j=0;j<sArray4D[a].length;j++){
-                    for(int l=0;l<sArray4D[a][j].length;l++){
-                        
-                        if(sArray4D[a][j][l][0]<lowest[0][0][0][a]) {lowest[0][0][0][a]=sArray4D[a][j][l][0];}
-
+        for(int i=0;i<3;i++){
+            for(int j=0;j<sArray4D[i].length;j++){
+                for(int l=0;l<sArray4D[i][j].length;l++){
+                    for(int q=0;q<sArray4D[i][j][l].length;q++){
+                    if(sArray4D[i][j][l][q]<lowest[i]){lowest[i]=sArray4D[i][j][l][q];}
                     }
                 }
-            }//end of for loop
-            
-        //to swap the 3D arrays who have the same length but the one with the lower value of the lowest value in its sub-array goes first     
+            }
+        }
+        
+        
+       //to swap the 3D arrays who have the same length but the one with the lower value of the lowest value in its sub-array goes first     
         double[][][] temp;
+        double tempLowest;
+        int tempSize;
         for(int z=0;z<3;z++){
             temp=sArray4D[z];
+            tempLowest=lowest[z];
+          
             for(int y=0;y<3;y++){
-                if(sArray4D[y].length==sArray4D[z].length && z>y && lowest[0][0][0][z]<lowest[0][0][0][y]){
+                if(size[y]==size[z] && z>y && lowest[z]<lowest[y]){
                     sArray4D[z]=sArray4D[y];
+                    lowest[z]=lowest[y];
+                    
                     sArray4D[y]=temp;
+                    lowest[y]=tempLowest;
+                 
+                    
                 }
             }
+            
         }//end of for
-                
-            return sArray4D;
+        
+        
+            return sort3DArray(sArray4D);
     }//end of sort4DArray method 
     
     //sort3D Array method 
